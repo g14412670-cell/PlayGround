@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101713" />
+  <title>Bloquecraft Studio — Creador de addons Bedrock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Bloquecraft Studio inicio">
+        <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+        <span class="brand-name">bloquecraft<span>STUDIO</span></span>
+      </a>
+      <div class="side-label">ESPACIO DE TRABAJO</div>
+      <nav class="side-nav" aria-label="Navegación principal">
+        <button class="nav-link active" data-view="designer"><span class="nav-icon">◈</span> Mi proyecto <span class="nav-dot"></span></button>
+        <button class="nav-link" data-view="content"><span class="nav-icon">▦</span> Contenido <span class="nav-count" id="nav-count">0</span></button>
+        <button class="nav-link" data-view="files"><span class="nav-icon">⌘</span> Archivos</button>
+      </nav>
+      <div class="side-label side-label-spaced">EMPIEZA RÁPIDO</div>
+      <button class="template-card" id="template-button">
+        <span class="template-icon">✦</span><span><b>Usar una plantilla</b><small>Un buen comienzo, en un clic</small></span><span class="template-arrow">↗</span>
+      </button>
+      <div class="sidebar-bottom">
+        <div class="sync-card"><span class="sync-indicator"></span><span><b>Guardado local</b><small>Solo en este dispositivo</small></span><span class="sync-check">✓</span></div>
+        <div class="version"><span class="version-dot"></span> Bedrock 1.21.90+ <span class="version-tag">FORMATO</span></div>
+        <div class="profile"><div class="avatar">B</div><span><b>Mi espacio</b><small>Creador de addons</small></span><span class="profile-menu">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Mis proyectos</span><span class="crumb-slash">/</span><b id="crumb-name">Nuevo addon</b><span class="draft-pill"><i></i> BORRADOR</span></div>
+        <div class="top-actions"><button class="icon-button" id="help-button" title="Ayuda" aria-label="Ayuda">?</button><button class="save-button" id="save-button"><span>✓</span> Guardado</button><button class="export-button" id="export-button"><span>↓</span> Exportar addon <span class="export-chevron">⌄</span></button></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="view active-view" id="view-designer">
+          <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> TALLER DE ADDONS</div><h1>Tu próxima gran idea<br><span>empieza por un bloque.</span></h1><p class="welcome-copy">Diseña contenido para Minecraft Bedrock. Sin código, sin complicaciones.</p></div><div class="welcome-art" aria-hidden="true"><div class="art-sun"></div><div class="art-cloud cloud-one"></div><div class="art-cloud cloud-two"></div><div class="art-mountain mountain-back"></div><div class="art-mountain mountain-front"></div><div class="art-block"><div class="block-top"></div><div class="block-side"></div><div class="block-front"><span></span><span></span><span></span><span></span></div></div><div class="art-grass"></div></div></div>
+
+          <div class="project-strip"><div class="project-glyph">✳</div><div class="project-input-wrap"><label for="project-name">NOMBRE DEL PROYECTO</label><input id="project-name" maxlength="32" value="Mi primer addon" /></div><div class="strip-divider"></div><div class="project-meta"><span class="meta-icon">◌</span><span><small>FORMATO DE EXPORTACIÓN</small><b>.mcaddon <i class="ready-dot"></i> Se genera al exportar</b></span></div><button class="strip-more" id="rename-button" title="Editar nombre">···</button></div>
+
+          <section class="ai-studio" id="ai-studio">
+            <div class="ai-studio-glow" aria-hidden="true"></div>
+            <div class="ai-studio-head">
+              <div class="ai-mark"><span>✦</span><i>IA</i></div>
+              <div class="ai-heading">
+                <span class="section-kicker">GENERADOR AUTOMÁTICO</span>
+                <h2>Describe tu idea. La IA construye el addon.</h2>
+                <p>Objetos, bloques y criaturas con texturas, recetas, comportamientos y archivos de Bedrock para revisar y exportar.</p>
+              </div>
+              <div class="ai-status" id="ai-status"><i></i><span>IA LISTA</span></div>
+            </div>
+            <div class="ai-prompt-wrap">
+              <textarea id="ai-prompt" maxlength="500" rows="2" placeholder="Ej. Espada de escarcha, bloque lunar y golem hostil."></textarea>
+              <div class="ai-prompt-foot">
+                <div class="ai-examples" id="ai-examples"></div>
+                <span class="ai-counter"><b id="ai-counter">0</b>/500</span>
+              </div>
+            </div>
+            <div class="ai-actions">
+              <button class="ai-generate" id="ai-generate" type="button"><span class="ai-generate-icon">✦</span><span><b>Generar addon completo</b><small id="ai-generate-hint">IA en la nube con respaldo local</small></span><span class="ai-generate-arrow">→</span></button>
+              <button class="ai-settings-toggle" id="ai-settings-toggle" type="button" aria-expanded="false"><span>⚙</span> Ajustes de IA</button>
+            </div>
+            <div class="ai-settings" id="ai-settings" hidden>
+              <div class="ai-settings-row">
+                <label for="ai-mode">MOTOR</label>
+                <select id="ai-mode">
+                  <option value="auto">IA en la nube (gratis) + respaldo local</option>
+                  <option value="local">Solo motor local (sin internet)</option>
+                  <option value="custom">API compatible con OpenAI</option>
+                  <option value="ollama">Ollama en tu equipo</option>
+                </select>
+              </div>
+              <div class="ai-settings-grid" id="ai-custom-fields" hidden>
+                <div class="field"><label for="ai-endpoint">ENDPOINT</label><input id="ai-endpoint" placeholder="https://api.openai.com/v1" autocomplete="off" /></div>
+                <div class="field"><label for="ai-model">MODELO</label><input id="ai-model" placeholder="gpt-4o-mini" autocomplete="off" /></div>
+                <div class="field"><label for="ai-key">API KEY</label><input id="ai-key" type="password" placeholder="sk-..." autocomplete="off" /></div>
+              </div>
+              <p class="ai-settings-note" id="ai-settings-note"></p>
+            </div>
+          </section>
+
+          <div class="section-heading"><div><span class="section-kicker">CREA ALGO NUEVO</span><h2>¿Qué quieres añadir?</h2></div><span class="required-note"><i>*</i> Campos obligatorios</span></div>
+          <div class="builder-grid">
+            <section class="panel builder-panel">
+              <div class="panel-top"><span class="step-number">01</span><div><h3>Elige tu creación</h3><p>El tipo de contenido que vivirá en tu mundo.</p></div><span class="panel-step">PASO 1 DE 2</span></div>
+              <div class="type-picker" role="tablist" aria-label="Tipo de contenido">
+                <button class="type-option selected" data-type="item" role="tab" aria-selected="true"><span class="type-icon item-icon">◆</span><span><b>Objeto</b><small>Herramientas, comida...</small></span><span class="type-check">✓</span></button>
+                <button class="type-option" data-type="block" role="tab" aria-selected="false"><span class="type-icon block-icon"><i></i></span><span><b>Bloque</b><small>Bloques para construir</small></span><span class="type-check">✓</span></button>
+                <button class="type-option" data-type="entity" role="tab" aria-selected="false"><span class="type-icon mob-icon">♟</span><span><b>Criatura</b><small>Una nueva entidad</small></span><span class="type-check">✓</span></button>
+              </div>
+              <div class="form-fields">
+                <div class="field-row"><div class="field"><label for="content-name">NOMBRE VISIBLE <em>*</em></label><input id="content-name" maxlength="32" value="Amatista brillante" placeholder="Ej. Espada de rubí" /><span class="field-hint">Así aparecerá dentro del juego</span></div><div class="field"><label for="content-id">IDENTIFICADOR <em>*</em></label><div class="id-input"><span>bc:</span><input id="content-id" maxlength="24" value="amatista_brillante" /><span class="id-valid" id="id-valid">✓</span></div><span class="field-hint">Único para tu addon, en minúsculas</span></div></div>
+                <div class="field-row"><div class="field"><label for="content-category">CATEGORÍA</label><div class="select-wrap"><select id="content-category"><option value="items">Objetos</option><option value="nature">Naturaleza</option><option value="construction">Construcción</option><option value="equipment">Equipamiento</option><option value="food">Comida</option></select><span>⌄</span></div></div><div class="field"><label for="content-color">COLOR DEL DISEÑO</label><div class="color-wrap"><div class="color-swatches"><button class="swatch active" data-color="#9b78ee" style="--swatch:#9b78ee" aria-label="Violeta"></button><button class="swatch" data-color="#f1a94e" style="--swatch:#f1a94e" aria-label="Naranja"></button><button class="swatch" data-color="#5cc995" style="--swatch:#5cc995" aria-label="Verde"></button><button class="swatch" data-color="#4ea8de" style="--swatch:#4ea8de" aria-label="Azul"></button><button class="swatch" data-color="#e97683" style="--swatch:#e97683" aria-label="Rojo"></button></div><span class="color-label" id="color-label">Violeta</span></div></div></div>
+                <div class="field description-field"><label for="content-description">DESCRIPCIÓN <span>OPCIONAL</span></label><textarea id="content-description" maxlength="100" placeholder="¿Qué hace especial a tu creación?">Un cristal antiguo que brilla con energía propia.</textarea><span class="char-count"><b id="char-count">52</b>/100</span></div>
+                <div class="behavior-area"><div class="behavior-heading"><span>COMPORTAMIENTO</span><small>Personaliza cómo funciona</small></div><div id="behavior-options" class="behavior-options"><label class="behavior-toggle"><span><b>Apilable</b><small>Hasta 64 en una ranura</small></span><input type="checkbox" id="stackable" checked><i class="toggle-ui"></i></label><label class="behavior-toggle"><span><b>Brillo encantado</b><small>Añade el destello de encantamiento</small></span><input type="checkbox" id="glow"><i class="toggle-ui"></i></label><label class="behavior-toggle"><span><b>Se puede comer</b><small>Restaura hambre al consumir</small></span><input type="checkbox" id="edible"><i class="toggle-ui"></i></label></div><p class="behavior-hint" id="behavior-hint" hidden></p><div class="attribute-block" id="attribute-block" hidden><div class="attribute-heading"><span>ATRIBUTOS DE JUEGO</span><small>Ajusta el balance</small></div><div class="attribute-grid" id="attribute-fields"></div></div></div>
+                <button class="create-button" id="create-button"><span class="create-star">✦</span> Añadir al proyecto <span class="button-arrow">→</span></button>
+              </div>
+            </section>
+
+            <aside class="preview-column"><section class="panel preview-panel"><div class="preview-header"><div><span class="section-kicker">VISTA PREVIA</span><h3>Así se verá en tu mundo</h3></div><span class="live-pill"><i></i> EN VIVO</span></div><div class="game-preview"><div class="preview-sky"><div class="preview-cloud cloud-a"></div><div class="preview-cloud cloud-b"></div><div class="preview-sun"></div><div class="preview-hill hill-a"></div><div class="preview-hill hill-b"></div><div class="preview-grass"></div><div class="preview-platform"><div class="platform-top"></div><div class="platform-side"></div></div><div class="preview-object" id="preview-object"><div class="object-shine"></div></div><div class="preview-shadow"></div></div><div class="hotbar"><div class="hotbar-slot"><span class="mini-icon">✦</span></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div><div class="hotbar-slot"></div></div><div class="preview-caption"><span class="caption-icon">✦</span><span><b id="preview-name">Amatista brillante</b><small id="preview-kind">OBJETO PERSONALIZADO</small></span><span class="caption-status">●</span></div></div><div class="preview-facts"><div><span class="fact-icon purple">✧</span><span><small>IDENTIFICADOR</small><b id="preview-id">bc:amatista_brillante</b></span></div><div><span class="fact-icon green">▣</span><span><small>FORMATO DE DESTINO</small><b>Bedrock 1.21.90+</b></span></div></div></section><section class="tip-card"><span class="tip-icon">✦</span><div><b>Un consejo de creador</b><p>Usa nombres cortos y únicos. Tu identificador no puede tener espacios ni mayúsculas.</p></div></section></aside>
+          </div>
+          <section class="content-section"><div class="content-section-head"><div><span class="section-kicker">TU ADDON VA TOMANDO FORMA</span><h2>Contenido del proyecto <span id="item-count">(0)</span></h2></div><button class="text-action" data-view="content">Ver todo <span>→</span></button></div><div id="content-list" class="content-list"></div></section>
+        </section>
+
+        <section class="view" id="view-content"><div class="subpage-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> BIBLIOTECA DEL PROYECTO</div><h1>Todo tu contenido<span class="title-period">.</span></h1><p class="welcome-copy">Administra los objetos, bloques y criaturas de este addon.</p></div><button class="export-button" id="export-button-content"><span>↓</span> Exportar addon</button></div><div class="content-toolbar"><div class="search-box"><span>⌕</span><input id="search-content" placeholder="Buscar contenido..." /></div><div class="filter-tabs"><button class="filter-tab active" data-filter="all">Todo <span id="filter-all-count">0</span></button><button class="filter-tab" data-filter="item">Objetos</button><button class="filter-tab" data-filter="block">Bloques</button><button class="filter-tab" data-filter="entity">Criaturas</button></div><button class="secondary-button" id="new-content-button">＋ Nuevo contenido</button></div><div id="content-grid" class="content-grid"></div></section>
+
+        <section class="view" id="view-files"><div class="subpage-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> ESTRUCTURA DEL ADDON</div><h1>Archivos del addon<span class="title-period">.</span></h1><p class="welcome-copy">El estudio prepara automáticamente los archivos que necesita Bedrock.</p></div><button class="export-button" id="export-button-files"><span>↓</span> Exportar .mcaddon</button></div><div class="files-layout"><div class="panel file-tree-panel"><div class="file-panel-head"><span><i class="folder-dot"></i> ESTRUCTURA DE CARPETAS</span><span class="tree-status">● ACTUALIZADO</span></div><div id="file-tree" class="file-tree"></div></div><div class="panel code-panel"><div class="code-head"><div><span class="code-file-icon">{ }</span><span id="code-file-name">manifest.json</span></div><button class="copy-button" id="copy-code">▢ Copiar</button></div><pre id="code-preview"><code></code></pre><div class="code-foot"><span>JSON</span><span><i></i> GENERADO</span></div></div></div><div class="compat-note"><span>✓</span><div><b>Paquete de Bedrock generado</b><small>Incluye un paquete de comportamiento y uno de recursos. Revisa el contenido antes de importarlo.</small></div><span class="compat-version">FORMATO 1.21.90</span></div></section>
+      </div>
+      <footer class="footer"><span>HECHO PARA QUIENES IMAGINAN EN BLOQUES <span class="footer-heart">♥</span></span><span>Bloquecraft Studio <span class="footer-sep">·</span> Bedrock 1.21.90+</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"><span>✓</span><b>Guardado</b></div>
+  <div class="modal-backdrop" id="modal"><div class="modal panel"><button class="modal-close" id="modal-close">×</button><span class="modal-sparkle">✦</span><span class="section-kicker">PLANTILLAS DE LA COMUNIDAD</span><h2>Empieza con una idea</h2><p>Elige una plantilla y personalízala a tu gusto.</p><div class="template-options"><button data-template="gem"><span class="template-preview gem-preview">◆</span><span><b>Cristal mágico</b><small>Objeto · Brilla en la oscuridad</small></span><span>→</span></button><button data-template="food"><span class="template-preview food-preview">●</span><span><b>Fruta del bosque</b><small>Comida · Restaura hambre</small></span><span>→</span></button><button data-template="sword"><span class="template-preview sword-preview">⚔</span><span><b>Espada de escarcha</b><small>Arma · Receta y durabilidad</small></span><span>→</span></button><button data-template="block"><span class="template-preview block-preview">▦</span><span><b>Bloque de musgo</b><small>Bloque · Decoración natural</small></span><span>→</span></button><button data-template="entity"><span class="template-preview entity-preview">♟</span><span><b>Golem de musgo</b><small>Criatura · Guardián hostil</small></span><span>→</span></button></div></div></div>
+  <script src="ai-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
